@@ -9,32 +9,37 @@
       margin: 0;
       height: 100vh;
       background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-      background-size: 400% 400%;
-      animation: gradientBG 10s ease infinite;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    @keyframes gradientBG {
+    .border-gradient {
+      padding: 2px;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #2196f3, #00c853, #ff6f00, #d500f9);
+      background-size: 300% 300%;
+      animation: borderMove 4s linear infinite;
+    }
+
+    .login-box {
+      background: white;
+      border-radius: 18px;
+      padding: 40px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes borderMove {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    .glass-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      padding: 40px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      color: #333;
-    }
-
-    .glass-card h3 {
+    h3 {
       font-weight: bold;
       color: #003366;
       margin-bottom: 25px;
@@ -43,33 +48,25 @@
     .form-control {
       border-radius: 30px;
       padding: 12px 20px;
-      border: 1px solid #ccc;
-    }
-
-    .form-control:focus {
-      border-color: #2196f3;
-      box-shadow: 0 0 0 0.15rem rgba(33, 150, 243, 0.25);
+      margin-bottom: 15px;
     }
 
     .btn-gradient {
       background: linear-gradient(90deg, #2196f3, #1565c0);
-      border: none;
       color: white;
-      padding: 12px;
+      border: none;
       border-radius: 30px;
+      padding: 12px;
       width: 100%;
-      transition: all 0.3s ease;
       font-weight: bold;
-      margin-top: 10px;
+      transition: 0.3s ease;
     }
 
     .btn-gradient:hover {
       background: linear-gradient(90deg, #1565c0, #0d47a1);
-      box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
 
-    /* Centered Success Box */
     #toast {
       position: fixed;
       top: 50%;
@@ -77,14 +74,13 @@
       transform: translate(-50%, -50%);
       background-color: #4caf50;
       color: white;
-      padding: 20px 30px;
+      padding: 16px 30px;
       border-radius: 12px;
       font-weight: 500;
-      font-size: 18px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
       display: none;
-      z-index: 9999;
-      animation: fadeInOut 1.5s ease-in-out forwards;
+      z-index: 1000;
+      animation: fadeInOut 2s ease-in-out;
     }
 
     @keyframes fadeInOut {
@@ -96,16 +92,17 @@
 </head>
 <body>
 
-  <div class="glass-card text-center">
-    <h3>🔐 Tata AIA Login</h3>
-    <form onsubmit="login(event)">
-      <input type="text" id="username" class="form-control mb-3" placeholder="Enter your name" required />
-      <input type="password" id="password" class="form-control mb-3" placeholder="Enter password" required />
-      <button class="btn-gradient" type="submit">Login</button>
-    </form>
+  <div class="border-gradient">
+    <div class="login-box">
+      <h3>🔐 Tata AIA Login</h3>
+      <form onsubmit="login(event)">
+        <input type="text" id="username" class="form-control" placeholder="Enter your name" required />
+        <input type="password" id="password" class="form-control" placeholder="Enter password" required />
+        <button type="submit" class="btn-gradient">Login</button>
+      </form>
+    </div>
   </div>
 
-  <!-- Centered Toast Box -->
   <div id="toast">✅ Login Successful! Redirecting...</div>
 
   <script>
