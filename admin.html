@@ -20,11 +20,11 @@
     <div class="row mb-4">
       <div class="col-md-6">
         <label for="advisorDropdown" class="form-label fw-semibold">Select Advisor:</label>
-        <select id="advisorDropdown" class="form-select">
-          <option value="">All Advisors</option>
-          <option>Advisor A</option>
-          <option>Advisor B</option>
-        </select>
+       <select id="advisorDropdown" class="form-select w-50 mb-4">
+  <option disabled selected>Select Advisor</option>
+</select>
+
+
       </div>
     </div>
     <h4 class="mb-3 fw-bold">Professionals</h4>
@@ -67,5 +67,21 @@
     document.getElementById("advisorDropdown").addEventListener("change", showProfessionals);
     showProfessionals();
   </script>
+  <script>
+  function loadAdvisors() {
+    const dropdown = document.getElementById("advisorDropdown");
+    const advisors = JSON.parse(localStorage.getItem("advisors") || "[]");
+
+    advisors.forEach(advisor => {
+      const option = document.createElement("option");
+      option.value = advisor.code || advisor.name;
+      option.textContent = `${advisor.name} (${advisor.code || 'NoCode'})`;
+      dropdown.appendChild(option);
+    });
+  }
+
+  loadAdvisors(); // call on page load
+</script>
+
 </body>
 </html>
